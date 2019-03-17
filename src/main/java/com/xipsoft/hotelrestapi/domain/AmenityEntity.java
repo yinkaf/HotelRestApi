@@ -14,4 +14,21 @@ public class AmenityEntity {
 
     @Column(name = "description", length = 200, nullable = false)
     private String description;
+
+
+    public String getShortDesc() {
+        return shortDesc;
+    }
+
+    public void setShortDesc(String shortDesc) {
+        this.shortDesc = shortDesc;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

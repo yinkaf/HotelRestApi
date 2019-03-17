@@ -1,5 +1,8 @@
 package com.xipsoft.hotelrestapi.controller;
 
+import com.xipsoft.hotelrestapi.controller.error.ApiError;
+import com.xipsoft.hotelrestapi.controller.error.ValidationError;
+import com.xipsoft.hotelrestapi.controller.exception.DataNotFoundException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -22,9 +25,6 @@ import java.util.Map;
 @ControllerAdvice
 @RestController
 public class RestApiExceptionHandler extends ResponseEntityExceptionHandler {
-    public RestApiExceptionHandler() {
-        super();
-    }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -38,10 +38,24 @@ public class RestApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(validationError, HttpStatus.BAD_REQUEST);
     }
 
+
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ApiError error = new ApiError(new Date(),ex.getMessage(),ex.getMessage(),request.getContextPath());
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(EmptyResultDataAccessException.class)
-    public ResponseEntity<?> HandleDataNotFound(EmptyResultDataAccessException ex){
-        ApiError error = new ApiError(new Date(),ex.getLocalizedMessage(),ex.getMessage());
+    public ResponseEntity<?> handleDataNotFound(EmptyResultDataAccessException ex, HttpHeaders headers, HttpStatus status, WebRequest request){
+        ApiError error = new ApiError(new Date(),ex.getLocalizedMessage(),ex.getMessage(),request.getContextPath());
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(DataNotFoundException.class)
+    public ResponseEntity<?> handleDataNotFound(DataNotFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request){
+        ApiError error = new ApiError(new Date(),ex.getMessage(),ex.getMessage() + " with id "+ex.getId(),request.getContextPath());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
 
 }

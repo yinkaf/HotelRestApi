@@ -1,4 +1,4 @@
-package com.xipsoft.hotelrestapi.controller;
+package com.xipsoft.hotelrestapi.controller.error;
 
 import java.util.Date;
 import java.util.Map;

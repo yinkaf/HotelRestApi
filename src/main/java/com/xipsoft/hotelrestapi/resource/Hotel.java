@@ -3,7 +3,7 @@ package com.xipsoft.hotelrestapi.resource;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class HotelResource {
+public class Hotel {
     private int id;
     @NotNull(message = "Hotel name cannot be null")
     @Size(max = 50, message = "Hotel name cannot be longer than 50 characters")
@@ -15,10 +15,10 @@ public class HotelResource {
     @Size(max = 3, message = "City code cannot be longer than 3 characters")
     private String cityCode;
 
-    public HotelResource() {
+    public Hotel() {
     }
 
-    public HotelResource(int id, @NotNull(message = "Hotel name cannot be null") @Size(max = 50, message = "Hotel name cannot be longer than 50 characters") String name, @NotNull(message = "Hotel description cannot be null") @Size(max = 500, message = "Hotel description cannot be longer than 500 characters") String description, @NotNull(message = "City code cannot be null") @Size(max = 3, message = "City code cannot be longer than 3 characters") String cityCode) {
+    public Hotel(int id, @NotNull(message = "Hotel name cannot be null") @Size(max = 50, message = "Hotel name cannot be longer than 50 characters") String name, @NotNull(message = "Hotel description cannot be null") @Size(max = 500, message = "Hotel description cannot be longer than 500 characters") String description, @NotNull(message = "City code cannot be null") @Size(max = 3, message = "City code cannot be longer than 3 characters") String cityCode) {
         this.id = id;
         this.name = name;
         this.description = description;

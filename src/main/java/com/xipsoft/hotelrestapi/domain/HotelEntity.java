@@ -3,10 +3,10 @@ package com.xipsoft.hotelrestapi.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
-@Entity(name="hotels")
-public class HotelEnitity {
+@Entity
+@Table(name="hotels")
+public class HotelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="hotel_id")
@@ -17,6 +17,7 @@ public class HotelEnitity {
     @Column(name = "hotel_name",length = 50, nullable = false)
     private String name;
 
+
     @NotNull(message = "Hotel description cannot be null")
     @Size(max = 500, message = "Hotel description cannot be longer than 500 characters")
     @Column(name = "description", length = 500, nullable = false)
@@ -26,11 +27,6 @@ public class HotelEnitity {
     @Size(max = 3, message = "City code cannot be longer than 3 characters")
     @Column(name = "city_code", length = 3, nullable = false)
     private String cityCode;
-
-    @OneToMany(mappedBy = "hotel")
-    List<HotelAmenity> amenities;
-    @OneToMany(mappedBy = "hotel")
-    List<RoomEntity> rooms;
 
     public int getId() {
         return id;
@@ -60,19 +56,4 @@ public class HotelEnitity {
         this.cityCode = cityCode;
     }
 
-    public List<HotelAmenity> getAmenities() {
-        return amenities;
-    }
-
-    public void setAmenities(List<HotelAmenity> amenities) {
-        this.amenities = amenities;
-    }
-
-    public List<RoomEntity> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<RoomEntity> rooms) {
-        this.rooms = rooms;
-    }
 }

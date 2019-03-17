@@ -3,16 +3,16 @@ package com.xipsoft.hotelrestapi.domain;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity(name = "room_amenities")
-public class RoomAmenity {
+@Entity(name ="hotel_amenities")
+public class HotelAmenityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="room_ame_id")
+    @Column(name="hotel_ame_id")
     private int id;
 
     @OneToOne
-    @JoinColumn(name = "room_id", nullable = false)
-    private RoomEntity room;
+    @JoinColumn(name = "hotel_id", nullable = false)
+    private HotelEntity hotel;
 
     @OneToOne
     @JoinColumn(name = "amenity_id", nullable = false)
@@ -25,12 +25,12 @@ public class RoomAmenity {
         return id;
     }
 
-    public RoomEntity getRoom() {
-        return room;
+    public HotelEntity getHotel() {
+        return hotel;
     }
 
-    public void setRoom(RoomEntity room) {
-        this.room = room;
+    public void setHotel(HotelEntity hotel) {
+        this.hotel = hotel;
     }
 
     public AmenityEntity getAmenity() {

@@ -3,7 +3,7 @@ package com.xipsoft.hotelrestapi.resource;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
-public class HotelAmenityResource {
+public class HotelAmenity {
     private int id;
     @Positive(message = "Must supply Amenity")
     private int amenityId;
