@@ -3,6 +3,7 @@ package com.xipsoft.hotelrestapi.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name="hotels")
@@ -28,6 +29,10 @@ public class HotelEntity {
     @Column(name = "city_code", length = 3, nullable = false)
     private String cityCode;
 
+    @OneToMany(mappedBy = "hotelId")
+    private List<RoomEntity> rooms;
+    @OneToMany(mappedBy = "hotelId")
+    private List<HotelAmenityEntity> amenityEntities;
     public int getId() {
         return id;
     }
@@ -56,4 +61,19 @@ public class HotelEntity {
         this.cityCode = cityCode;
     }
 
+    public List<RoomEntity> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<RoomEntity> rooms) {
+        this.rooms = rooms;
+    }
+
+    public List<HotelAmenityEntity> getAmenityEntities() {
+        return amenityEntities;
+    }
+
+    public void setAmenityEntities(List<HotelAmenityEntity> amenityEntities) {
+        this.amenityEntities = amenityEntities;
+    }
 }

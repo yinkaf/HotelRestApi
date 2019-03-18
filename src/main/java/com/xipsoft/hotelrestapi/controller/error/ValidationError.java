@@ -7,11 +7,13 @@ public class ValidationError {
     private Date timestamp;
     private String message;
     private Map<String,String> details;
+    private String path;
 
-    public ValidationError(Date timestamp, String message, Map<String, String> details) {
+    public ValidationError(Date timestamp, String message, Map<String, String> details,String path) {
         this.timestamp = timestamp;
         this.message = message;
         this.details = details;
+        this.path = path;
     }
 
     public Date getTimestamp() {
@@ -24,5 +26,9 @@ public class ValidationError {
 
     public Map<String, String> getDetails() {
         return details;
+    }
+
+    public String getPath() {
+        return path;
     }
 }

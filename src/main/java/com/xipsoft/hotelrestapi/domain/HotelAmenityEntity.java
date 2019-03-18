@@ -10,9 +10,8 @@ public class HotelAmenityEntity {
     @Column(name="hotel_ame_id")
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "hotel_id", nullable = false)
-    private HotelEntity hotel;
+    @Column(name = "hotel_id", nullable = false)
+    private int hotelId;
 
     @OneToOne
     @JoinColumn(name = "amenity_id", nullable = false)
@@ -25,12 +24,12 @@ public class HotelAmenityEntity {
         return id;
     }
 
-    public HotelEntity getHotel() {
-        return hotel;
+    public int getHotelId() {
+        return hotelId;
     }
 
-    public void setHotel(HotelEntity hotel) {
-        this.hotel = hotel;
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
     }
 
     public AmenityEntity getAmenity() {

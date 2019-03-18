@@ -9,9 +9,8 @@ public class RoomEntity {
     @Column(name="room_id")
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "hotel_id",nullable = false)
-    private HotelEntity hotel;
+    @Column(name = "hotel_id",nullable = false)
+    private int hotelId;
 
     @Column(name = "description", nullable = false, length = 50)
     private String description;
@@ -20,12 +19,12 @@ public class RoomEntity {
         return id;
     }
 
-    public HotelEntity getHotel() {
-        return hotel;
+    public int getHotelId() {
+        return hotelId;
     }
 
-    public void setHotel(HotelEntity hotel) {
-        this.hotel = hotel;
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
     }
 
     public String getDescription() {
