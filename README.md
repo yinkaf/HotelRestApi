@@ -35,6 +35,7 @@ There are 2 Rest Controllers.
 /api/hotels
 
 This is implemented in class *com.xipsoft.hotelrestapi.controller.HotelRestController*
+
 This controller does the following:-
 - Add a new Hotel
 - Get a pageable list of all the hotels
@@ -53,6 +54,7 @@ The following endpoints are exposed.
 /api/rooms
  
  This is implemented in class *com.xipsoft.hotelrestapi.controller.RoomRestController*
+
  This controller does the following:-
  - Delete a room
  - Add a list of amenities to a room
