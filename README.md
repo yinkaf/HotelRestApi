@@ -1,7 +1,14 @@
+## Table of contents
+
+- [Hotel Rest Api](#hotel-rest-api)
+  - [Requirements](#requirements)
+  - [Architecture](#architecture)
+  - [Design Considerations](#design-considerations)
+
 # Hotel Rest Api
 
 This is a spring boot application that implements a rest api for a **Hotel**.
-
+  
 ## Requirements
 Use case:  
 1.	Create a rest controller which will have methods to search/insert/delete below resources. 
@@ -67,7 +74,7 @@ The following endpoints are exposed.
  The following endpoints are exposed.
  ![Room Rest Controller](/doc/RoomRestController.png)
  
- ## Design Considerations
+## Design Considerations
  
  - The data used for all the creation call are  smaller representation of the actual data returned.
  This makes the data expected from the api cleaner without unnecessary fields.
