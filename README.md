@@ -66,3 +66,11 @@ The following endpoints are exposed.
   
  The following endpoints are exposed.
  ![Room Rest Controller](/doc/RoomRestController.png)
+ 
+ ## Design Considerations
+ 
+ - The data used for all the creation call are  smaller representation of the actual data returned.
+ This makes the data expected from the api cleaner without unnecessary fields.
+ - Ths Room, RoomAmenity, HotelAmenity data return by the endpoints do not contain full representation of the parent data, just the id. This reduces the size of the JSON data.
+ - Amenity are shared data, the addAmenity api calls looks up the amenity by shortDesc to check if one exists.
+ 
