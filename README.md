@@ -2,7 +2,7 @@
 
 This is a spring boot application that implements a rest api for a **Hotel**.
 
-##Requirements
+## Requirements
 Use case:  
 1.	Create a rest controller which will have methods to search/insert/delete below resources. 
 -	Hotels (paginated)
@@ -18,5 +18,16 @@ The solution should have validation check, exception handling. Follow layering a
 -	JSR Validation framework for validation check
 -	Generic exception handling
 
-##Architecture
-The application uses
+## Architecture
+The application uses the following components.
+
+- Spring Rest Conroller
+- Spring services
+- Spring Data Repository
+- Spring Data JPA
+- MySQL database for production
+- H2 database for testing
+- Mock Spring MVC for integration testing
+
+There are 2 Rest Controllers.
+
