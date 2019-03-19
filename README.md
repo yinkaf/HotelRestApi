@@ -20,7 +20,7 @@ The solution should have validation check, exception handling. Follow layering a
 
 ## Architecture
 
-![Conceptual Architecture](/doc/ConceptualArchitecture.png)
+![Conceptual Architecture](/doc/ConceptualAcritecture.png)
 The application uses the following components.
 
 - Spring Rest Conroller
