@@ -19,6 +19,8 @@ The solution should have validation check, exception handling. Follow layering a
 -	Generic exception handling
 
 ## Architecture
+
+![Conceptual Architecture](/doc/ConceptualArchitecture.png)
 The application uses the following components.
 
 - Spring Rest Conroller
