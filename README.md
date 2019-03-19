@@ -28,13 +28,36 @@ The application uses the following components.
 - MySQL database for production
 - H2 database for testing
 - Mock Spring MVC for integration testing
+- Swagger 2 for Rest endpoint documentation
 
 There are 2 Rest Controllers.
 
- /api/hotels
+    /api/hotels
  
- This is implemented in class *com.xipsoft.hotelrestapi.controller.HotelRestController*
- The following endpoints are exposed.
- ![Hotel Rest Controller](/doc/HotelRestController.png)
+    This is implemented in class *com.xipsoft.hotelrestapi.controller.HotelRestController*
+    This controller does the following:-
+    - Add a new Hotel
+    - Get a pageable list of all the hotels
+    - Search hotels and returns a pageable list
+    - Add a room to a hotel
+    - Get the list of rooms for a hotel
+    - Add a list of amenities to a hotel
+    - Get the list of hotel amenities
+    - Delete a hotel
+    - Delete a hotel amenity
  
-  
+    The following endpoints are exposed.
+    ![Hotel Rest Controller](/doc/HotelRestController.png)
+ 
+
+    /api/rooms
+     
+     This is implemented in class *com.xipsoft.hotelrestapi.controller.RoomRestController*
+     This controller does the following:-
+     - Delete a room
+     - Add a list of amenities to a room
+     - Get the list of room amenities
+     - Delete a room amenity
+      
+     The following endpoints are exposed.
+     ![Room Rest Controller](/doc/RoomRestController.png)
