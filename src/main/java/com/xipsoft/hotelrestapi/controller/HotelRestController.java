@@ -69,7 +69,7 @@ public class HotelRestController {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value="Add Amenities to Hotel")
     @ApiResponses(value={
-            @ApiResponse(code=201,message="Amenities Created"),
+            @ApiResponse(code=201,message="Amenities Created",response=HotelEntity.class),
             @ApiResponse(code=400,message="Validation Error",response= ValidationError.class),
             @ApiResponse(code=404,message="Not Found", response = ApiError.class),
             @ApiResponse(code=500,message="Internal Server Error", response = ApiError.class)

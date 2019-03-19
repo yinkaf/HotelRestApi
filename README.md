@@ -31,3 +31,10 @@ The application uses the following components.
 
 There are 2 Rest Controllers.
 
+ /api/hotels
+ 
+ This is implemented in class *com.xipsoft.hotelrestapi.controller.HotelRestController*
+ The following endpoints are exposed.
+ ![Hotel Rest Controller](/doc/HotelRestController.png)
+ 
+  
