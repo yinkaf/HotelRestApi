@@ -53,6 +53,8 @@ The following endpoints are exposed.
 
 /api/rooms
  
+ ![Room controller](/src/main/java/com/xipsoft/hotelrestapi/controller/RoomController.java)
+ 
  This is implemented in class *com.xipsoft.hotelrestapi.controller.RoomRestController*
 
  This controller does the following:-
