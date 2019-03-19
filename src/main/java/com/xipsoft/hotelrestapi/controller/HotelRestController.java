@@ -1,10 +1,12 @@
 package com.xipsoft.hotelrestapi.controller;
 
+import com.xipsoft.hotelrestapi.controller.error.ApiError;
+import com.xipsoft.hotelrestapi.controller.error.ValidationError;
 import com.xipsoft.hotelrestapi.domain.HotelAmenityEntity;
 import com.xipsoft.hotelrestapi.domain.HotelEntity;
-import com.xipsoft.hotelrestapi.domain.RoomAmenityEntity;
 import com.xipsoft.hotelrestapi.domain.RoomEntity;
 import com.xipsoft.hotelrestapi.resource.AmenityList;
+import com.xipsoft.hotelrestapi.resource.Hotel;
 import com.xipsoft.hotelrestapi.resource.HotelSearchParam;
 import com.xipsoft.hotelrestapi.resource.Room;
 import com.xipsoft.hotelrestapi.service.HotelService;
@@ -43,12 +45,15 @@ public class HotelRestController {
      */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+
     @ApiOperation(value="Create a new Hotel",response=HotelEntity.class)
     @ApiResponses(value={
             @ApiResponse(code=201,message="Hotel Created",response=HotelEntity.class),
-            @ApiResponse(code=500,message="Internal Server Error")
+            @ApiResponse(code=400,message="Validation Error",response= ValidationError.class),
+            @ApiResponse(code=404,message="Not Found", response = ApiError.class),
+            @ApiResponse(code=500,message="Internal Server Error", response = ApiError.class)
     })
-    public ResponseEntity<HotelEntity> newHotel(@Valid @RequestBody @ApiParam(name = "Hotel",value = "Hotel Resource",required = true) HotelEntity hotel) {
+    public ResponseEntity<HotelEntity> newHotel(@Valid @RequestBody @ApiParam(name = "Hotel",value = "Hotel Resource",required = true) Hotel hotel) {
         return new ResponseEntity<>(hotelService.createHotel(hotel), HttpStatus.CREATED);
 
     }
@@ -62,7 +67,14 @@ public class HotelRestController {
      */
     @PostMapping(path = "{id}/amenities")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<List<HotelAmenityEntity>> addHotelAmenities(@PathVariable("id") int id, @RequestBody @Valid AmenityList amenities) {
+    @ApiOperation(value="Add Amenities to Hotel")
+    @ApiResponses(value={
+            @ApiResponse(code=201,message="Amenities Created"),
+            @ApiResponse(code=400,message="Validation Error",response= ValidationError.class),
+            @ApiResponse(code=404,message="Not Found", response = ApiError.class),
+            @ApiResponse(code=500,message="Internal Server Error", response = ApiError.class)
+    })
+    public ResponseEntity<List<HotelAmenityEntity>> addHotelAmenities( @PathVariable("id") int id, @RequestBody @Valid AmenityList amenities) {
 
         return new ResponseEntity<>(hotelService.addEmenities(id, amenities), HttpStatus.CREATED);
     }

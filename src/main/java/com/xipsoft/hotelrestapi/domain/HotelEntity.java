@@ -32,7 +32,7 @@ public class HotelEntity {
     @OneToMany(mappedBy = "hotelId")
     private List<RoomEntity> rooms;
     @OneToMany(mappedBy = "hotelId")
-    private List<HotelAmenityEntity> amenityEntities;
+    private List<HotelAmenityEntity> amenities;
     public int getId() {
         return id;
     }
@@ -69,11 +69,11 @@ public class HotelEntity {
         this.rooms = rooms;
     }
 
-    public List<HotelAmenityEntity> getAmenityEntities() {
-        return amenityEntities;
+    public List<HotelAmenityEntity> getAmenities() {
+        return amenities;
     }
 
-    public void setAmenityEntities(List<HotelAmenityEntity> amenityEntities) {
-        this.amenityEntities = amenityEntities;
+    public void setAmenities(List<HotelAmenityEntity> amenities) {
+        this.amenities = amenities;
     }
 }

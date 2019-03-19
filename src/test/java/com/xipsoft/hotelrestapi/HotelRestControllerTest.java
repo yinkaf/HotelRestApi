@@ -152,7 +152,7 @@ public class HotelRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.message", is("Validation failed for hotelEntity")))
+                .andExpect(jsonPath("$.message", is("Validation failed for hotel")))
                 .andExpect(jsonPath("$.details.cityCode", is("City code cannot be null")))
                 .andExpect(jsonPath("$.details.name", is("Hotel name cannot be null")))
                 .andExpect(jsonPath("$.details.description", is("Hotel description cannot be null")))
