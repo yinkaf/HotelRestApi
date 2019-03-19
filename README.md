@@ -34,7 +34,8 @@ There are 2 Rest Controllers.
 
 /api/hotels
 
-This is implemented in class *com.xipsoft.hotelrestapi.controller.HotelRestController*
+This is implemented in class  [Hotel Rest Controller](https://github.com/yinkaf/HotelRestApi/blob/master/src/main/java/com/xipsoft/hotelrestapi/controller/HotelRestController.java)
+
 
 This controller does the following:-
 - Add a new Hotel
@@ -53,9 +54,7 @@ The following endpoints are exposed.
 
 /api/rooms
  
-[Room Rest Controller](https://github.com/yinkaf/HotelRestApi/blob/master/src/main/java/com/xipsoft/hotelrestapi/controller/RoomRestController.java)
- 
- This is implemented in class *com.xipsoft.hotelrestapi.controller.RoomRestController*
+ This is implemented in class [Room Rest Controller](https://github.com/yinkaf/HotelRestApi/blob/master/src/main/java/com/xipsoft/hotelrestapi/controller/RoomRestController.java)
 
  This controller does the following:-
  - Delete a room
