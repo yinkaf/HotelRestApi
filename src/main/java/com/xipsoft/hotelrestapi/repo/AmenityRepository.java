@@ -6,4 +6,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(exported = false)
 public interface AmenityRepository extends CrudRepository<AmenityEntity,Integer> {
+    AmenityEntity findByShortDesc(String desc);
 }

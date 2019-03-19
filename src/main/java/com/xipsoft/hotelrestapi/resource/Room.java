@@ -5,21 +5,9 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 public class Room {
-    private int id;
     @NotNull(message = "Room description cannot be null")
     @Size(max = 50, message = "Room description cannot be longer that 50 characters")
     private String description;
-    @Positive(message = "Must supply a hotel id")
-    private int hotelId;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getDescription() {
         return description;
@@ -29,11 +17,4 @@ public class Room {
         this.description = description;
     }
 
-    public int getHotelId() {
-        return hotelId;
-    }
-
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
-    }
 }

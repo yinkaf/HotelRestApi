@@ -2,9 +2,13 @@ package com.xipsoft.hotelrestapi.controller;
 
 import com.xipsoft.hotelrestapi.domain.HotelAmenityEntity;
 import com.xipsoft.hotelrestapi.domain.HotelEntity;
+import com.xipsoft.hotelrestapi.domain.RoomAmenityEntity;
+import com.xipsoft.hotelrestapi.domain.RoomEntity;
 import com.xipsoft.hotelrestapi.resource.AmenityList;
 import com.xipsoft.hotelrestapi.resource.HotelSearchParam;
+import com.xipsoft.hotelrestapi.resource.Room;
 import com.xipsoft.hotelrestapi.service.HotelService;
+import com.xipsoft.hotelrestapi.service.RoomService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,10 +27,12 @@ import java.util.List;
 public class HotelRestController {
 
     private HotelService hotelService;
+    private RoomService roomService;
 
     @Autowired
-    public HotelRestController(HotelService hotelService) {
+    public HotelRestController(HotelService hotelService, RoomService roomService) {
         this.hotelService = hotelService;
+        this.roomService = roomService;
     }
 
     /**
@@ -56,7 +62,7 @@ public class HotelRestController {
      */
     @PostMapping(path = "{id}/amenities")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<List<HotelAmenityEntity>> addAmenities(@PathVariable("id") int id, @RequestBody @Valid AmenityList amenities) {
+    public ResponseEntity<List<HotelAmenityEntity>> addHotelAmenities(@PathVariable("id") int id, @RequestBody @Valid AmenityList amenities) {
 
         return new ResponseEntity<>(hotelService.addEmenities(id, amenities), HttpStatus.CREATED);
     }
@@ -67,10 +73,24 @@ public class HotelRestController {
      * @param id the id of the hotel
      * @return the list of the added room amenities
      */
-    @GetMapping(path = "{id}/amenity")
+    @GetMapping(path = "{id}/amenities")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<HotelAmenityEntity>> getAmenities(@PathVariable("id") int id) {
+    public ResponseEntity<List<HotelAmenityEntity>> getHotelAmenities(@PathVariable("id") int id) {
         return new ResponseEntity<>(hotelService.getAmenities(id), HttpStatus.OK);
+
+    }
+
+    /**
+     * Delete a hotel amenity this will throw a EmptyResultDataAccessException if the hotel amenity does not exist
+     *
+     * @param id the id of the hotel amenity
+     * @return NO_CONTENT status code
+     */
+    @DeleteMapping(path = "amenities/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> deleteHotelAmenity( @PathVariable("id") int id) {
+        hotelService.deleteHotelAmenity(id);
+        return new ResponseEntity<>( HttpStatus.NO_CONTENT);
 
     }
 
@@ -110,9 +130,39 @@ public class HotelRestController {
 
     @DeleteMapping(path = "{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> delete(@PathVariable("id") int id) {
+    public ResponseEntity<Void> deleteHotel(@PathVariable("id") int id) {
         hotelService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
+
+    /**
+     * Creates a Room for a given hotel
+     * will throw DataNotFound if the hotel for the room is not found
+     *
+     * @param hotelId the id of the hotel
+     * @param roomResource the room data
+     * @return the created room and a status of CREATED
+     */
+    @PostMapping(path = "{hotelId}/rooms")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<RoomEntity> createRoom(@PathVariable("hotelId") int hotelId, @Valid @RequestBody Room roomResource) {
+        return new ResponseEntity<>(roomService.createRoom(hotelId,roomResource), HttpStatus.CREATED);
+    }
+
+
+    /**
+     * Get all the rooms for a hotel with  id
+     *
+     * @param id the id of the hotel
+     * @return list of rooms
+     */
+    @GetMapping(path = "{hotelId}/rooms")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<RoomEntity>> getRoomsForHotel(@PathVariable("hotelId") int id) {
+        return new ResponseEntity<>(roomService.getRoomsForHotel(id), HttpStatus.OK);
+    }
+
 
 }

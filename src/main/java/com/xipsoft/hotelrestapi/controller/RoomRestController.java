@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/room")
+@RequestMapping(path = "api/rooms")
 public class RoomRestController {
 
     final private RoomService roomService;
@@ -24,18 +24,6 @@ public class RoomRestController {
         this.roomService = roomService;
     }
 
-    /**
-     * Creates a Room
-     * will throw DataNotFound if the hotel for the room is not found
-     *
-     * @param roomResource the room data
-     * @return the created room and a status of CREATED
-     */
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<RoomEntity> createRoom(@Valid @RequestBody Room roomResource) {
-        return new ResponseEntity<>(roomService.createRoom(roomResource), HttpStatus.CREATED);
-    }
 
     /**
      * Add amenities to a room
@@ -44,11 +32,26 @@ public class RoomRestController {
      * @param amenities the list of amenities to add
      * @return the list am amenities added
      */
-    @PostMapping(path = "{id}/amenity")
+    @PostMapping(path = "{id}/amenities")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<List<RoomAmenityEntity>> addAmenities(@PathVariable("id") int id, @Valid @RequestBody AmenityList amenities) {
 
         return new ResponseEntity<>(roomService.addEmrnities(id, amenities), HttpStatus.CREATED);
+    }
+
+
+    /**
+     * Delete a room amenity this will throw a EmptyResultDataAccessException if the room amenity does not exist
+     *
+     * @param id the id of the room amenity
+     * @return NO_CONTENT status code
+     */
+    @DeleteMapping(path = "amenities/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> deleteRoomAmenity( @PathVariable("id") int id) {
+        roomService.deleteRoomAmenity(id);
+        return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+
     }
 
     /**
@@ -76,17 +79,6 @@ public class RoomRestController {
         return new ResponseEntity<>(roomService.getRoom(id), HttpStatus.OK);
     }
 
-    /**
-     * Get all the rooms for a hotel with  id
-     *
-     * @param id the id of the hotel
-     * @return list of rooms
-     */
-    @GetMapping(path = "hotel/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<RoomEntity>> getRoomsForHotel(@PathVariable("id") int id) {
-        return new ResponseEntity<>(roomService.getRoomsForHotel(id), HttpStatus.OK);
-    }
 
     /**
      * Deletes a room wit id

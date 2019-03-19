@@ -9,6 +9,13 @@ public class AmenityList {
     @NotNull
     private List<Amenity> items;
 
+    public AmenityList() {
+    }
+
+    public AmenityList(List<Amenity> amenities) {
+        this.items = amenities;
+    }
+
     public List<Amenity> getItems() {
         return items;
     }

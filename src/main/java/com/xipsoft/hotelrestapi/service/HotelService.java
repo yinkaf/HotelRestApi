@@ -42,9 +42,16 @@ public class HotelService {
         List<HotelAmenityEntity> savedHotelAmenityEntityList = new ArrayList<>();
         try {
             amenities.getItems().forEach(amenity -> {
-                AmenityEntity amenityEntity = new AmenityEntity();
-                amenityEntity.setShortDesc(amenity.getShortDesc());
-                amenityEntity.setDescription(amenity.getDescription());
+                AmenityEntity amenityEntity = amenityRepository.findByShortDesc(amenity.getShortDesc());
+                if(amenityEntity == null) {
+                    amenityEntity = new AmenityEntity();
+                    amenityEntity.setShortDesc(amenity.getShortDesc());
+                    amenityEntity.setDescription(amenity.getDescription());
+                }else{
+                    if(!amenityEntity.getDescription().equals((amenity.getDescription()))) {
+                        amenityEntity.setDescription(amenity.getDescription());
+                    }
+                }
                 AmenityEntity savedAmenity = amenityRepository.save(amenityEntity);
                 HotelAmenityEntity hotelAmenityEntity = new HotelAmenityEntity();
                 hotelAmenityEntity.setHotelId(id);
@@ -85,5 +92,9 @@ public class HotelService {
 
     public void delete(int id) {
         hotelRepository.deleteById(id);
+    }
+
+    public void deleteHotelAmenity(int id) {
+        hotelAmenityRepository.deleteById(id);
     }
 }

@@ -5,7 +5,6 @@ import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 public class Amenity {
-    private int id;
     @NotNull(message = "Amenity Short Description cannot be null")
     @Size(max = 10, message = "Amenity Short Description cannot be longer that 10 characters")
     private String shortDesc;
@@ -15,14 +14,6 @@ public class Amenity {
 
     private boolean chargeable;
     private BigDecimal amount;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getShortDesc() {
         return shortDesc;
